@@ -27,7 +27,7 @@ public class Contacto {
     }
     
    public String toString(){
-    return "nombre del contacto: "+nombre+"/t numero del contacto: "+numero;
+    return "nombre del contacto: "+nombre+"\t numero del contacto: "+numero;
    }
 
    public boolean equals (Object o){

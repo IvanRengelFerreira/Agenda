@@ -31,4 +31,9 @@ public class Libreta implements Serializable {
         return this;
     }
 
+    public void mostrarContactos() {
+        for(Contacto c : contactos){
+            System.out.println(c);
+        }
+    }
 }
