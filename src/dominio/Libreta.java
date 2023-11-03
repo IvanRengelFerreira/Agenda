@@ -3,19 +3,18 @@ import java.util.*;
 import java.io.Serializable;
 
 
-
 public class Libreta implements Serializable {
     
     private String nombre;
-    private ArrayList<Contactos> contactos;
+    private ArrayList<Contacto> contactos;
 
     public Libreta(String nombre){
         this.nombre = nombre;
-        contactos = new ArrayList<Contactos>();
+        contactos = new ArrayList<Contacto>();
     }
 
-    public Libreta add(Contactos contacto){
-        contactos.add(contacto);
+    public Libreta add(Contacto c){
+        contactos.add(c);
         return this;
     }
 
@@ -23,8 +22,13 @@ public class Libreta implements Serializable {
         return nombre;
     }
 
-    public Contactos getContactos( int i){
+    public Contacto getContactos( int i){
         return contactos.get(i);
+    }
+
+    public Libreta borrar(Contacto c){
+        contactos.remove(c);
+        return this;
     }
 
 }

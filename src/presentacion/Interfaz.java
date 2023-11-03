@@ -11,7 +11,7 @@ import dominio.*;
 
 public class Interfaz {
 
-public Libreta libreta;
+private Libreta libreta = new Libreta("Mi libreta");
 private Scanner sc = new Scanner(System.in);
 
     public void anadirContactos(){
@@ -19,10 +19,15 @@ private Scanner sc = new Scanner(System.in);
         String nombre = sc.nextLine();
         System.out.print("Introduzca el numero del contacto");
         int numero = sc.nextInt();
-        Contactos c = new Contactos(nombre, numero);
+        Contacto c = new Contacto(nombre, numero);
         libreta.add(c);
 
     }
+
+    public void borrar(String nombre){
+        libreta.borrar(new Contacto(nombre));
+    }
+
 
     public boolean procesarPeticion(String peticion){
         String [] p=peticion.split("");
@@ -32,7 +37,7 @@ private Scanner sc = new Scanner(System.in);
             }else if(p[0].equals("list")){
                 System.out.println(libreta);
             }else if(p[0].equals("help")){
-                System.out.println("Introduzca una de las siguientes peticiones: /n Añadir contactos= addContacto /n Mostrar contactos= list");
+                System.out.println("Introduzca una de las siguientes peticiones: /n Añadir contactos= addContacto /n Mostrar contactos= list /n Borrar: borrar ");
             }else if(p[0].equals("exit")){
                 grabar();
                 return false;
@@ -54,7 +59,7 @@ private Scanner sc = new Scanner(System.in);
             libreta=(Libreta)obj.readObject();
             obj.close();
         } catch (Exception e) {
-            libreta = new Libreta(null);
+            libreta = new Libreta("Mi libreta");
         }
     }
 
@@ -71,6 +76,14 @@ private Scanner sc = new Scanner(System.in);
         }
 
     }
+
+    public String leerPeticion() {
+        System.out.print("?>");
+        String cadena = sc.nextLine();
+        return cadena;
+    }
+   
+
 }
 
     

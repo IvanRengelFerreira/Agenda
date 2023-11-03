@@ -1,11 +1,11 @@
 package dominio;
 
-public class Contactos {
+public class Contacto {
     
     private String nombre;
     private int numero;
     
-    public Contactos(String nombre, int numero){
+    public Contacto(String nombre, int numero){
         this.nombre = nombre;
         this.numero = numero;
     }
@@ -30,7 +30,12 @@ public class Contactos {
     return "nombre del contacto: "+nombre+"/t numero del contacto: "+numero;
    }
 
-public void add(Contactos c) {
+   public boolean equals (Object o){
+    Contacto c = (Contacto)o;
+    return nombre.equals(c.nombre);
 }
 
+    public Contacto(String nombre){
+        this.nombre  = nombre;
+    }
 }
