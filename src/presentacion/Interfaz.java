@@ -6,8 +6,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Scanner;
 
-import javax.swing.plaf.synth.SynthLookAndFeel;
-
 import dominio.Contacto;
 import dominio.Libreta;
 
@@ -44,10 +42,13 @@ private Scanner sc = new Scanner(System.in);
         if (p.length > 0) {
             if (p[0].equalsIgnoreCase("addContacto")) {
                 anadirContactos();
-            } else if (p[0].equalsIgnoreCase("list")) {
+            
+             }else if (p[0].equalsIgnoreCase("actContacto")) {
+                actualizarContacto();
+             } else if (p[0].equalsIgnoreCase("list")) {
                mostrarContactos();
             } else if (p[0].equalsIgnoreCase("help")) {
-                System.out.println("Introduzca una de las siguientes peticiones: \n Anadir contactos = addContacto \n Mostrar contactos = list \n Borrar contactos = borrar ");
+                System.out.println("Introduzca una de las siguientes peticiones: \n Anadir contactos = addContacto \n Mostrar contactos = list \n Borrar contactos = borrar \n salir del programa = exit \n Actualizar contacto = actContacto");
             }else if (p[0].equalsIgnoreCase("borrar")){
                 borrar();
             } else if (p[0].equalsIgnoreCase("exit")) {
@@ -102,10 +103,29 @@ private Scanner sc = new Scanner(System.in);
     }
 
     public void actualizarContacto(){
-        borrar();
-        System.out.println("Introduce el nombre del contacto: ");
+        System.out.println("Introduce el nombre del contacto que deseas actualizar: ");
+        String nombreViejo = sc.nextLine();
         
+        // Verificar si el contacto existe.
+        Contacto contacto = libreta.buscarContacto(nombreViejo);
+        if (contacto == null) {
+            System.out.println("El contacto no existe.");
+            return;
+        }
+        
+        System.out.println("Introduzca el nuevo nombre del contacto (o deje en blanco para no cambiarlo): ");
+        String nombreNuevo = sc.nextLine();
+        nombreNuevo = nombreNuevo.isEmpty() ? contacto.getNombre() : nombreNuevo; // Mantener el nombre si está en blanco.
+        
+        System.out.println("Introduzca el nuevo número del contacto (o deje en blanco para no cambiarlo): ");
+        String numeroStr = sc.nextLine();
+        int numeroNuevo = numeroStr.isEmpty() ? contacto.getNumero() : Integer.parseInt(numeroStr); // Mantener el número si está en blanco.
+        
+      
+        libreta.actualizarContacto(nombreViejo, new Contacto(nombreNuevo, numeroNuevo));
+        System.out.println("Contacto actualizado.");
     }
+    
 
 }
 

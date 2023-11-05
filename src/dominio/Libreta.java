@@ -36,4 +36,22 @@ public class Libreta implements Serializable {
             System.out.println(c);
         }
     }
+
+    public Contacto buscarContacto(String nombre) {
+        for (Contacto contacto : contactos) {
+            if (contacto.getNombre().equalsIgnoreCase(nombre)) {
+                return contacto;
+            }
+        }
+        return null; 
+    }
+
+    public void actualizarContacto(String nombreViejo, Contacto contactoActualizado) {
+        Contacto contactoAActualizar = buscarContacto(nombreViejo);
+        if (contactoAActualizar != null) {
+            contactos.remove(contactoAActualizar); 
+            contactos.add(contactoActualizado); 
+        }
+    }
+
 }
