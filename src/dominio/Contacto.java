@@ -1,6 +1,6 @@
 package dominio;
 
-public class Contacto {
+public class Contacto implements Serializable{
     
     private String nombre;
     private int numero;
