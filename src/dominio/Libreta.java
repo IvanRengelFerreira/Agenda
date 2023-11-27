@@ -46,6 +46,10 @@ public class Libreta implements Serializable {
         return null; 
     }
 
+    /**
+     * @param nombreViejo
+     * @param contactoActualizado
+     */
     public void actualizarContacto(String nombreViejo, Contacto contactoActualizado) {
         Contacto contactoAActualizar = buscarContacto(nombreViejo);
         if (contactoAActualizar != null) {
